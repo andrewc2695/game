@@ -1,5 +1,5 @@
 # TODO why the ::
-class API::V1::GameBoardsController < ApplicationController
+class Api::V1::GameBoardsController < ApplicationController
   before_action :set_game_board, only: %i[ show update destroy ]
 
   # GET /game_boards
