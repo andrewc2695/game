@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import './style.scss';
 
 
 
 export const Splash = () => {
-    // check for gameId in local storage
-    // if we found one ask if they want to continue game? I guess we need to know which side they were one
-    // if not then we can create a game
+    // create or join game options
+    // im going to need to find a way to delete old games
+
     return <div className="Splash">
-        
+        <h1>Play Luzhanqi</h1>
+        <div className="Splash-ButtonsContainer">
+            <button>Create New Game</button>
+            <button>Join Game</button>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Luzhanqi" target="_">Luzhanqi Wiki</a>
     </div>
 }
 

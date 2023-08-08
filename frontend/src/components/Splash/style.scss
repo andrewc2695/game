@@ -1,0 +1,33 @@
+.Splash {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-size: 40px;
+    }
+
+    &-ButtonsContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 200px;
+        button {
+            border-radius: 5px;
+            height: 30px;
+            width: max-content;
+            padding: 3px;
+            background-color: rgb(81, 223, 81);
+            border: 1px solid black;
+        }
+        button:hover {
+            cursor: pointer;
+            background-color: rgb(71, 197, 71);
+            transition: all 0.3s ease-in;
+        }
+    }
+}
