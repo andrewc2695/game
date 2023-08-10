@@ -1,0 +1,36 @@
+.UserList {
+    flex: 1 1 auto;
+    border: 1px solid black;
+    border-top: transparent;
+    width: max-content;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+
+    &-ListContianer {
+       overflow: auto;
+    }
+
+    &-Selected {
+        background-color: rgb(65, 217, 118);
+    }
+
+    &-User, &-Title {
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+    }
+
+    &-User:hover {
+        cursor: pointer;
+        background-color: rgb(65, 217, 118);
+    }
+
+    &-Title {
+        min-height: 30px;
+        background-color: rgb(65, 217, 118);
+    }
+
+}

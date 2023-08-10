@@ -1,0 +1,17 @@
+.UserDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &-Table {
+        width: 100%;
+        tr {
+            
+            text-align: center;
+        }
+        td {
+            padding: 0 15px;
+        }
+
+    }
+}
