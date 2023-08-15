@@ -1,6 +1,12 @@
 
+import React, { useEffect, useMemo } from "react";
+import './style.scss'
 
 export const GameBoard = () => {
+
+    const squares = useMemo(() => document.getElementsByClassName('square'), []);
+    const circels = useMemo(() => document.getElementById('sircle'), []);
+
 
     return (
         <div id="board">
