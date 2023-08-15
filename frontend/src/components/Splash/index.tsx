@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './style.scss';
 
 
@@ -6,6 +6,10 @@ import './style.scss';
 export const Splash = () => {
     // create or join game options
     // im going to need to find a way to delete old games
+
+    // useEffect(() => {
+    //     fetch('http://localhost:3000/api/v1/game_boards', {method: 'GET'}).then((res) => res.json()).then((json) => console.log(json))
+    // }, [])
 
     return <div className="Splash">
         <h1>Play Luzhanqi</h1>
