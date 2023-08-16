@@ -1,9 +1,9 @@
 
 import { Tile } from "./tile";
-declare type piece = "flag" | "mine" | "bomb" | "engineer" | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
-class Board {
+export type piece = "flag" | "mine" | "bomb" | "engineer" | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | null
+export class Board {
     board: (Tile | null)[][];
-    pieces: Record< piece, number>;
+    pieces: Record< Exclude<piece, null>, number>;
     startTile: string | undefined;
     constructor() {
         this.board = [
@@ -118,6 +118,34 @@ class Board {
         // this.highlightedTiles = [];
         // this.startTile;
         // this.movePiece = this.movePiece.bind(this);
+        this.getAvaliablePieces = this.getAvaliablePieces.bind(this);
+        this.placePiece = this.placePiece.bind(this);
+    }
+
+    getAvaliablePieces = () => {
+        return this.pieces;
+    }
+
+    placePiece = (piece: piece | number, position: [number, number], player: 'p1' | 'p2') => {
+        const space = this.board[position[0]][position[1]]
+        if(space){
+            space.piece = piece as 'flag';
+            space.player = player;
+        }
+    }
+
+    getAllPieces = () => {
+        const arr:[piece, string | undefined][][] = [];
+        this.board.forEach((row) => {
+            const rowArr: [piece, string | undefined][] = [];
+           row.forEach((tile) => {
+            if(tile){
+                rowArr.push([tile.piece, tile.player])
+            }
+           })
+           arr.push(rowArr);
+        })
+        return arr;
     }
 
     // closeWindow = (that, pieceList) => {
@@ -345,5 +373,3 @@ class Board {
     // }
 
 }
-
-module.exports = Board;
