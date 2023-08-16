@@ -4,18 +4,25 @@ import { useGameBoardLogic } from "./logic";
 import './style.scss'
 import { PieceSelector } from "../PieceSelector";
 import { Board } from "./board";
+import { updateGame } from "../../utility/game";
 
 export const GameBoard = () => {
 
     const { setUpGameBoard,
             board,
             showSelector,
-            setShowSelector
+            setShowSelector,
+            boardState,
         } = useGameBoardLogic();
 
     useEffect(() => {
         setUpGameBoard('p1');
+        console.log(JSON.stringify(board.getAllPieces()));
     }, []);
+
+    useEffect(() => {
+        updateGame(4);
+    }, [])
 
 
     return (

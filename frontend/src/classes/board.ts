@@ -133,7 +133,7 @@ export class Board {
             space.piece = piece as 'flag';
             space.player = player;
         }
-        console.log("All pieces", this.getAllPieces())
+        
     }
 
     getAllPieces = () => {

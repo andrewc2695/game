@@ -5,7 +5,6 @@ class Api::V1::GameBoardsController < ApplicationController
   # GET /game_boards
   def index
     @game_boards = GameBoard.all
-
     render json: @game_boards
   end
 
@@ -17,9 +16,8 @@ class Api::V1::GameBoardsController < ApplicationController
   # POST /game_boards
   def create
     @game_board = GameBoard.new(game_board_params)
-
     if @game_board.save
-      render json: @game_board, status: :created, location: @game_board
+      render :show
     else
       render json: @game_board.errors, status: :unprocessable_entity
     end
@@ -27,8 +25,9 @@ class Api::V1::GameBoardsController < ApplicationController
 
   # PATCH/PUT /game_boards/1
   def update
+    @game_board = GameBoard.find(params[:id])
     if @game_board.update(game_board_params)
-      render json: @game_board
+      render :show
     else
       render json: @game_board.errors, status: :unprocessable_entity
     end
@@ -47,6 +46,6 @@ class Api::V1::GameBoardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_board_params
-      params.require(:game_board).permit(:board, :string)
+      params.require(:game_board).permit(:board, :current_player)
     end
 end
