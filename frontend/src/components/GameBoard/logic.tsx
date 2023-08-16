@@ -18,7 +18,7 @@ export type pieces = {
 
 export const useGameBoardLogic = () => {
     const [board, setBoard] = useState(new Board);
-    const [showSelector, setShowSelector] = useState<{top: number, left: number}>();
+    const [showSelector, setShowSelector] = useState<{top: number, left: number, id: string}>();
 
 
     const setUpGameBoard = (player: 'p1' | 'p2') => {
@@ -29,8 +29,11 @@ export const useGameBoardLogic = () => {
     }
 
     const showSelectorFn = (e: Event) => {
-        const evt = e as PointerEvent
-        setShowSelector({top: evt.clientY, left: evt.clientX});
+        const evt = e as MouseEvent;
+        const id = (e.target as HTMLElement).parentElement?.id
+        if(id){
+            setShowSelector({top: evt.clientY, left: evt.clientX, id: id});
+        }
     }
 
 

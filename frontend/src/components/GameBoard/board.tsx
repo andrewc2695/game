@@ -23,7 +23,7 @@ export const Board = () => {
                     <div className="pieceValue" id="pv03"></div>
                 </div>
                 <div className="square p1" id="0 4">
-                    <div className="pieceValue" id="pv04"></div>
+                    <div className="pieceValue"></div>
                 </div>
             </div>
             <div className="row" id="row1">

@@ -23,10 +23,11 @@ export const GameBoard = () => {
             <Board />
             {showSelector && 
                 <PieceSelector 
-                    pieces={board.getAvaliablePieces()} 
+                    board={board}
                     top={showSelector.top}
                     left={showSelector.left}    
                     setShowSelector={setShowSelector}
+                    id={showSelector.id}
                 />}
         </div>
     )

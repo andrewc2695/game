@@ -127,11 +127,13 @@ export class Board {
     }
 
     placePiece = (piece: piece | number, position: [number, number], player: 'p1' | 'p2') => {
+        console.log({piece, position, player})
         const space = this.board[position[0]][position[1]]
         if(space){
             space.piece = piece as 'flag';
             space.player = player;
         }
+        console.log("All pieces", this.getAllPieces())
     }
 
     getAllPieces = () => {
