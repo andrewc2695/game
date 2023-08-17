@@ -25,7 +25,6 @@ class Api::V1::GameBoardsController < ApplicationController
 
   # PATCH/PUT /game_boards/1
   def update
-    @game_board = GameBoard.find(params[:id])
     if @game_board.update(game_board_params)
       render :show
     else

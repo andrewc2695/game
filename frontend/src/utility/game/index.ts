@@ -19,3 +19,11 @@ export const updateGame = (id: number) => {
     }
     ).then((res) => res.json()).then((json) => json);
 }
+
+export const deleteGame = (id: number) => {
+    fetch(`http://localhost:3000/api/v1/game_boards/${id}`, {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'DELETE',
+    }
+    ).then((res) => res.json()).then((json) => json);
+}
