@@ -19,8 +19,10 @@ export const PieceSelector = ({board, top, left, id, setShowSelector}: IPieceSel
             <div className="PieceSelector" style={{top, left}}>
                 {Object.entries(board.getAvaliablePieces()).map(([k, v]) => {
                     return <div className="PieceSelector-Piece" key={k}><div onClick={() => {
-                        const pos = id.split(' ').map((num) => Number(num))
-                        board.placePiece(v, pos as [number, number], 'p1')
+                        if(v > 0) {
+                            const pos = id.split(' ').map((num) => Number(num))
+                            board.placePiece(k as 'flag', pos as [number, number], 'p1')
+                        }
                     }}>{k}:{v}</div></div>
                 })}
             </div>

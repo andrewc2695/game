@@ -131,6 +131,10 @@ export class Board {
     placePiece = (piece: piece | number, position: [number, number], player: 'p1' | 'p2') => {
         const space = this.board[position[0]][position[1]]
         if(space){
+            this.pieces[piece as 'flag']--;
+            if(space.piece){
+                this.pieces[space.piece]++;
+            } 
             space.piece = piece as 'flag';
             space.player = player;
             this.visuallyUpdatePiece(space);

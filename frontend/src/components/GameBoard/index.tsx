@@ -1,5 +1,5 @@
 
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useGameBoardLogic } from "./logic";
 import './style.scss'
 import { PieceSelector } from "../PieceSelector";
@@ -7,7 +7,6 @@ import { Board } from "./board";
 import { deleteGame, updateGame } from "../../utility/game";
 
 export const GameBoard = () => {
-
     const { setUpGameBoard,
             board,
             showSelector,
@@ -24,7 +23,7 @@ export const GameBoard = () => {
     }, [gameInfo?.player]);
 
     useEffect(() => {
-        
+
     }, [boardState])
 
 
