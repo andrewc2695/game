@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import {Board} from '../../classes/board'
+import { getLastPlayedGameAndPlayer } from "../../utility/game"
 
 export type pieces = {
     "flag": number,
@@ -20,9 +21,14 @@ export const useGameBoardLogic = () => {
     const [board, setBoard] = useState(new Board);
     const [boardState, setBoardState] = useState<string>(JSON.stringify(board.getAllPieces()));
     const [showSelector, setShowSelector] = useState<{top: number, left: number, id: string}>();
+    const [gameInfo, setGameInfo] = useState<{gameId: string, player: string}>();
 
     useEffect(() => {
-        console.log(JSON.stringify(board.getAllPieces()) === boardState);
+        const {gameId, player } = getLastPlayedGameAndPlayer();
+        console.log({gameId, player})
+        if(gameId && player){
+            setGameInfo({gameId, player});
+        }
     }, [])
 
     const setUpGameBoard = (player: 'p1' | 'p2') => {
@@ -47,5 +53,6 @@ export const useGameBoardLogic = () => {
     boardState,
     showSelector,
     setShowSelector,
+    gameInfo,
  }
 }

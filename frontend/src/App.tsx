@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/game_board" Component={GameBoard} />
         <Route path="/" Component={Splash}/>
       </Routes>
     </div>

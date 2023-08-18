@@ -13,16 +13,19 @@ export const GameBoard = () => {
             showSelector,
             setShowSelector,
             boardState,
+            gameInfo,
         } = useGameBoardLogic();
 
     useEffect(() => {
-        setUpGameBoard('p1');
+        if(gameInfo?.player){
+            setUpGameBoard(gameInfo.player as 'p1');
+        }
         // console.log(JSON.stringify(board.getAllPieces()));
-    }, []);
+    }, [gameInfo?.player]);
 
     useEffect(() => {
-        // deleteGame(10);
-    }, [])
+        
+    }, [boardState])
 
 
     return (

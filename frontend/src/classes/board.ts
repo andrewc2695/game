@@ -1,4 +1,5 @@
 
+import { getLastPlayedGameAndPlayer } from "../utility/game";
 import { Tile } from "./tile";
 export type piece = "flag" | "mine" | "bomb" | "engineer" | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | null
 export class Board {
@@ -120,6 +121,7 @@ export class Board {
         // this.movePiece = this.movePiece.bind(this);
         this.getAvaliablePieces = this.getAvaliablePieces.bind(this);
         this.placePiece = this.placePiece.bind(this);
+        this.visuallyUpdatePieces = this.visuallyUpdatePieces.bind(this);
     }
 
     getAvaliablePieces = () => {
@@ -127,13 +129,12 @@ export class Board {
     }
 
     placePiece = (piece: piece | number, position: [number, number], player: 'p1' | 'p2') => {
-        console.log({piece, position, player})
         const space = this.board[position[0]][position[1]]
         if(space){
             space.piece = piece as 'flag';
             space.player = player;
+            this.visuallyUpdatePiece(space);
         }
-        
     }
 
     getAllPieces = () => {
@@ -148,6 +149,39 @@ export class Board {
            arr.push(rowArr);
         })
         return arr;
+    }
+
+    visuallyUpdatePiece = (tile: Tile) => {
+        const piece = document.getElementById(`${tile.row} ${tile.col}`);
+        if(piece && tile.piece){
+            const children = piece.children;
+            for(let i = 0; i < children.length; i++){
+                if (children[i].className === 'pieceValue'){
+                    children[i].innerHTML = `${tile.piece}`
+                }
+            }
+        }
+    }
+
+    visuallyUpdatePieces = () => {
+        this.board.forEach((row) => {
+            row.forEach((piece) => {
+                if(piece){
+                    if(piece.piece && piece.player === getLastPlayedGameAndPlayer().player){
+                        console.log('hii');
+                        const tile = document.getElementById(`${piece.row} ${piece.col}`);
+                        if(tile){
+                            const children = tile.children;
+                            for(let i = 0; i < children.length; i++){
+                                if(children[i].className === 'pieceValue'){
+                                    children[i].nodeValue = `${piece.piece}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+        })
     }
 
     // closeWindow = (that, pieceList) => {

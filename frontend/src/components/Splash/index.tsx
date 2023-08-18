@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import {useNavigate} from 'react-router-dom'
 import './style.scss';
-import { createNewGame } from "../../utility/game";
+import { createNewGame, getLastPlayedGameAndPlayer, saveGameIdAndPlayer } from "../../utility/game";
 
 
 
 export const Splash = () => {
+    const navigate = useNavigate();
     // create or join game options
     // im going to need to find a way to delete old games
 
@@ -13,14 +15,24 @@ export const Splash = () => {
     }, [])
 
     const handleCreateNewGame = () => {
-        createNewGame();
+        createNewGame().then((res) => {
+            if(res.game_board){
+                saveGameIdAndPlayer(res.game_board.id, res.game_board.current_player);
+                navigate('/game_board');
+            }
+        });
+    }
+
+    const handleJoinGame = () => {
+        navigate('/game_board');
     }
 
     return <div className="Splash">
         <h1>Play Luzhanqi</h1>
         <div className="Splash-ButtonsContainer">
-            <button onClick={createNewGame}>Create New Game</button>
+            <button onClick={handleCreateNewGame}>Create New Game</button>
             <button>Join Game</button>
+            {getLastPlayedGameAndPlayer().gameId && <button onClick={handleJoinGame}>Join Last Played Game</button>}
         </div>
         <a href="https://en.wikipedia.org/wiki/Luzhanqi" target="_">Luzhanqi Wiki</a>
     </div>

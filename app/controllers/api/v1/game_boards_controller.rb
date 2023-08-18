@@ -17,7 +17,7 @@ class Api::V1::GameBoardsController < ApplicationController
   def create
     @game_board = GameBoard.new(game_board_params)
     if @game_board.save
-      render :show
+      render :json => {'game_board' => @game_board}
     else
       render json: @game_board.errors, status: :unprocessable_entity
     end
