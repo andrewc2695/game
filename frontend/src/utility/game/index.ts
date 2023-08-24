@@ -11,16 +11,23 @@ export const createNewGame = ():Promise<{game_board: {board: string, current_pla
     ).then((res) => res.json()).then((json) => json);
 }
 
-export const updateGame = (id: number) => {
-    return fetch('http://localhost:3000/api/v1/game_boards/4', {
+export const getGame = (id: string) => {
+    return fetch(`http://localhost:3000/api/v1/game_boards/${id}`, {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'GET',
+    }).then((res) => res.json()).then((json) => json);
+}
+
+export const updateGame = (id: string, gameState: string) => {
+    return fetch(`http://localhost:3000/api/v1/game_boards/${id}`, {
         headers: { 'Content-Type': 'application/json' },
         method: 'PUT',
-        body: JSON.stringify({ game_board: { board: initialBoardState, current_player: 'p2'} })
+        body: JSON.stringify({ game_board: { board: gameState, current_player: 'p1'} })
     }
     ).then((res) => res.json()).then((json) => json);
 }
 
-export const deleteGame = (id: number) => {
+export const deleteGame = (id: string) => {
     return fetch(`http://localhost:3000/api/v1/game_boards/${id}`, {
         headers: { 'Content-Type': 'application/json' },
         method: 'DELETE',

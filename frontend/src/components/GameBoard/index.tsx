@@ -4,7 +4,7 @@ import { useGameBoardLogic } from "./logic";
 import './style.scss'
 import { PieceSelector } from "../PieceSelector";
 import { Board } from "./board";
-import { deleteGame, updateGame } from "../../utility/game";
+import { deleteGame, getGame, updateGame } from "../../utility/game";
 
 export const GameBoard = () => {
     const { setUpGameBoard,
@@ -13,6 +13,8 @@ export const GameBoard = () => {
             setShowSelector,
             boardState,
             gameInfo,
+            ready,
+            setReady
         } = useGameBoardLogic();
 
     useEffect(() => {
@@ -23,8 +25,14 @@ export const GameBoard = () => {
     }, [gameInfo?.player]);
 
     useEffect(() => {
+        setReady(board.allPiecesPlaced());
+    }, [showSelector])
 
-    }, [boardState])
+    useEffect(() => {
+        if(gameInfo?.gameId){
+            getGame(gameInfo.gameId).then((res) => console.log(res));
+        }
+    }, [gameInfo])
 
 
     return (
@@ -38,6 +46,11 @@ export const GameBoard = () => {
                     setShowSelector={setShowSelector}
                     id={showSelector.id}
                 />}
+                {ready && <div onClick={() => {
+                    if(gameInfo){
+                        updateGame(gameInfo.gameId, JSON.stringify(board.getAllPieces()));
+                    }
+                }}>READY!</div>}
         </div>
     )
 }

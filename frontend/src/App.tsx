@@ -12,7 +12,6 @@ function App() {
         <Route path="/game_board" Component={GameBoard} />
         <Route path="/" Component={Splash}/>
       </Routes>
-      ``
     </div>
   );
 }

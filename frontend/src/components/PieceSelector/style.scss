@@ -25,9 +25,23 @@
         height: 30px;
         text-align: center;
         border-bottom: 1px solid black;
+        div {
+            width: 100%;
+        }
     }
 
     &-Piece:hover{
         background-color: rgb(81, 223, 81);
+        cursor: pointer;
+    }
+
+    &-Invalid {
+        background-color: red;
+        cursor:not-allowed;
+    }
+
+    &-Invalid:hover {
+        background-color: red;
+        cursor:not-allowed;
     }
 }

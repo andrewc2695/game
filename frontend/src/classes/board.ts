@@ -122,6 +122,8 @@ export class Board {
         this.getAvaliablePieces = this.getAvaliablePieces.bind(this);
         this.placePiece = this.placePiece.bind(this);
         this.visuallyUpdatePieces = this.visuallyUpdatePieces.bind(this);
+        this.canPieceStartHere = this.canPieceStartHere.bind(this);
+        this.allPiecesPlaced = this.allPiecesPlaced.bind(this);
     }
 
     getAvaliablePieces = () => {
@@ -186,6 +188,32 @@ export class Board {
                 }
             })
         })
+    }
+
+    canPieceStartHere(piece: piece, position: [number, number]){
+        if(piece === 'flag'){
+            if((position[0] !== 0 && position[0] !== 14) || (position[1] !== 1 && position[1] !== 3)) {
+                return false;
+            }
+        }
+        if(piece === 'mine'){
+            if((position[0] !== 0 && position[0] !== 1 && position[0] !== 13 && position[0] !== 14)) {
+                return false;
+            }
+            if(position[0] === 0 || position[0] === 14){
+                if(position[1] === 1 || position[1] === 3) return false;
+            } 
+        }
+        if(piece === 'bomb'){
+            if(position[0] === 5 || position[0] === 9){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    allPiecesPlaced(){
+        return Object.values(this.pieces).every((p) => p === 0);
     }
 
     // closeWindow = (that, pieceList) => {

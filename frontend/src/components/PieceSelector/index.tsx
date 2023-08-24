@@ -14,16 +14,21 @@ interface IPieceSelector {
     board: Board;
 }
 export const PieceSelector = ({board, top, left, id, setShowSelector}: IPieceSelector) => {
+    
     return (
         <div className="BackGround" onClick={() => setShowSelector(undefined)}>
             <div className="PieceSelector" style={{top, left}}>
                 {Object.entries(board.getAvaliablePieces()).map(([k, v]) => {
-                    return <div className="PieceSelector-Piece" key={k}><div onClick={() => {
-                        if(v > 0) {
-                            const pos = id.split(' ').map((num) => Number(num))
-                            board.placePiece(k as 'flag', pos as [number, number], 'p1')
-                        }
-                    }}>{k}:{v}</div></div>
+                    const pos = id.split(' ').map((num) => Number(num))
+                    const isStartingPieceValid = board.canPieceStartHere(k as 'flag', pos as [number, number]) && v > 0;
+                    return <div className={`PieceSelector-Piece ${isStartingPieceValid ? '' : 'PieceSelector-Invalid'}`} key={k}>
+                            <div onClick={() => {
+                                if(isStartingPieceValid && v > 0) {
+                                    board.placePiece(k as 'flag', pos as [number, number], 'p1')
+                                }
+                            }}>{k}:{v}
+                            </div>
+                    </div>
                 })}
             </div>
         </div>

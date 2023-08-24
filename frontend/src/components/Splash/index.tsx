@@ -10,9 +10,9 @@ export const Splash = () => {
     // create or join game options
     // im going to need to find a way to delete old games
 
-    useEffect(() => {
-        fetch('http://localhost:3000/api/v1/game_boards', {method: 'GET'}).then((res) => res.json()).then((json) => console.log(json))
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:3000/api/v1/game_boards', {method: 'GET'}).then((res) => res.json()).then((json) => console.log(json))
+    // }, [])
 
     const handleCreateNewGame = () => {
         createNewGame().then((res) => {

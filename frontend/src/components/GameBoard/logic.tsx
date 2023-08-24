@@ -22,10 +22,10 @@ export const useGameBoardLogic = () => {
     const [boardState, setBoardState] = useState<string>(JSON.stringify(board.getAllPieces()));
     const [showSelector, setShowSelector] = useState<{top: number, left: number, id: string}>();
     const [gameInfo, setGameInfo] = useState<{gameId: string, player: string}>();
+    const [ready, setReady] = useState(false);
 
     useEffect(() => {
         const {gameId, player } = getLastPlayedGameAndPlayer();
-        console.log({gameId, player})
         if(gameId && player){
             setGameInfo({gameId, player});
         }
@@ -54,5 +54,7 @@ export const useGameBoardLogic = () => {
     showSelector,
     setShowSelector,
     gameInfo,
+    ready, 
+    setReady
  }
 }
