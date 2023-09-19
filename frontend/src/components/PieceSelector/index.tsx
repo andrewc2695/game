@@ -18,6 +18,7 @@ interface IPieceSelector {
 	>;
 	board: Board;
 }
+// 
 export const PieceSelector = ({
 	board,
 	top,
