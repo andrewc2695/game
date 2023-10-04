@@ -52,3 +52,20 @@
 // 	}
 // 	return order;
 // }
+
+// function getWays(n, c) {
+// 	// Write your code here
+// 	// we have to sort the coins
+// 	// then we create an array from 0/1 => n
+// 	// we take the number and keep adding it to itself until its === to num or greater than num
+// 	let count = new Array(n + 1).fill(0);
+// 	count[0] = 1;
+// 	const sortC = c.sort((a, b) => a - b);
+// 	sortC.forEach((coin) => {
+// 		for (let i = coin; i <= n; i++) {
+// 			const pair = count[i - coin];
+// 			count[i] += pair;
+// 		}
+// 	});
+// 	return count[n];
+// }
