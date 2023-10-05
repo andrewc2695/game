@@ -69,3 +69,19 @@
 // 	});
 // 	return count[n];
 // }
+
+// function birthdayCakeCandles(candles) {
+// 	// Write your code here
+// 	let max = -Infinity;
+// 	let count = 0;
+// 	candles.forEach((c) => {
+// 		if (c > max) {
+// 			max = c;
+// 			count = 1;
+// 		} else if (c === max) {
+// 			count++;
+// 		}
+// 	});
+
+// 	return count;
+// }
