@@ -85,3 +85,55 @@
 
 // 	return count;
 // }
+// Steady Genes
+// function steadyGene(gene) {
+// 	// Write your code here
+// 	// finds out what were loking to replace
+// 	const count = { A: 0, G: 0, C: 0, T: 0 };
+// 	for (let i = 0; i < gene.length; i++) {
+// 		count[gene[i]]++;
+// 	}
+
+// 	const charsToReplace = {};
+// 	const currCount = {};
+// 	let min = 0;
+// 	Object.keys(count).forEach((k) => {
+// 		if (count[k] - gene.length / 4 > 0) {
+// 			charsToReplace[k] = count[k] - gene.length / 4;
+// 			currCount[k] = 0;
+// 			min += count[k] - gene.length / 4;
+// 		}
+// 	});
+// 	let l = 0;
+// 	let t = 0;
+// 	let currMin = Infinity;
+// 	while (l < gene.length) {
+// 		if (checkIfMaxChars(charsToReplace, currCount)) {
+// 			if (currMin > l - t) {
+// 				currMin = l - t;
+// 				if (currMin === min) return currMin;
+// 			}
+// 			if (currCount[gene[t]]) {
+// 				currCount[gene[t]]--;
+// 			}
+// 			t++;
+// 		} else {
+// 			if (currCount[gene[l]] !== undefined) {
+// 				currCount[gene[l]]++;
+// 			}
+// 			l++;
+// 		}
+// 	}
+// 	return currMin;
+// }
+
+// function checkIfMaxChars(oldChars, newChars) {
+// 	const keys = Object.keys(oldChars);
+// 	let allChars = true;
+// 	for (let i = 0; i < keys.length; i++) {
+// 		if (oldChars[keys[i]] > newChars[keys[i]]) {
+// 			allChars = false;
+// 		}
+// 	}
+// 	return allChars;
+// }
